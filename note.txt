@@ -1,0 +1,80 @@
+ERP
+
+User Response:
+Status:200
+Message:success 
+Data:
+{
+	id:1,
+	first_name: "user",
+	last_name: "username",
+	email: user@mail.com,
+	password: userPassword,
+	role: admin,
+	phoneNumber:08xxxxxxxx
+	positionName: BE,
+	Company: userCompanyGroup
+}
+Error:
+
+
+
+DL:
+1.EditByUserID 
+ -jika edit kosong/string kosong
+ -hash password
+ -validasi jika email sudah ada 
+*CHECK CREATE(HASH)
+*Delete
+2.SignUp
+3.SignIn 
+5.Pagination
+6.Access by user or admin 
+
+
+handling
+1.getAll
+	/-200 success
+	
+	*server
+	/-500 internal server error
+	-401 unauthorized 
+	/-404 not found
+2.getByID
+	-200 success
+	/-400 bad req 
+	*server
+	/-500 internal server error
+	-401 unauthorized 
+	/-404 not found
+3.create
+	*klien
+	/-201 success
+	/-400 bad req 
+	/-409 conflict -> email already exist
+	/-422 Unprocessable Entity -> pass must 8 char
+	*server
+	/-500 internal server error
+	-401 unauthorized 
+
+4.update(email is problem when create body must always have email)
+	*klien
+	/-200 success
+	
+	/-404 not found
+	/-400 bad req 
+	/-409 conflict -> email already exist and 
+	 /**check email(deleted unique)
+	 /**check email is null
+	/-422 Unprocessable Entity -> pass must 8 char
+	*server
+	-500 internal server error
+	-401 unauthorized 	
+5.Delete
+	*klien
+	/-204 success
+	/-400 bad req 
+	/-404 not found
+	*server
+	-500 internal server error
+	-401 unauthorized 
